@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<robot name="mechanism">
+
+    <link name="base_link"></link>
+
+    <joint name="base_to_rod" type="prismatic">
+        <parent link="base_link" />
+        <child link="rod_link" />
+        <origin xyz="0 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="rod_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.5707963268 0" />
+            <geometry>
+                <cylinder length="0.008" radius="0.005" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="rod_to_pendulum" type="revolute">
+        <parent link="rod_link" />
+        <child link="pendulum_link" />
+        <origin xyz="0 0 0" />
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <link name="pendulum_link">
+        <inertial>
+            <mass value="0.100" />
+            <origin xyz="0 0 -0.215" rpy="0 0 0" />
+            <inertia ixx="0.00169083" ixy="0" ixz="0" iyy="0.00169083" iyz="0" izz="3.63333e-6" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 -0.215" rpy="0 0 0" />
+            <geometry>
+                <box size="0.006 0.02 0.45" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+    </link>
+
+</robot>
